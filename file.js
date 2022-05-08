@@ -1,5 +1,3 @@
-
-
 export default function myPlugin() {
     return {
         name: 'transform-file',
@@ -9,9 +7,8 @@ export default function myPlugin() {
         ) {
             const fileRegex = /\.(graphql)$/;
             // console.log('src=',src)
-            console.log('id=', id);
+            // console.log('id=', id);
             if (fileRegex.test(id)) {
-                console.log('src=',src)
                 return {
                     // 转义
                     code: src,

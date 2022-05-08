@@ -2,17 +2,17 @@ import { defineConfig, loadEnv } from 'vite';
 // 要想为传统浏览器提供支持，可以按下面这样使用官方插件 @vitejs/plugin-legacy：
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
-import pluginResolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
+import pluginResolve from 'rollup-plugin-node-resolve';
 import { visualizer } from 'rollup-plugin-visualizer';
+import eslint from '@rollup/plugin-eslint';
 import file from './file';
 import path from 'path';
+import eslintrc from './.eslintrc.js';
 const { resolve } = path;
-
 // https://vitejs.dev/config/
 export default defineConfig(async ({ command, mode }) => {
-    console.log('command=', command);
-    console.log('mode=', mode);
+    // console.log('command=', command);
+    // console.log('mode=', mode);
     const ENV = loadEnv(mode, __dirname);
     const IS_DEV = ENV.VITE_APP_ENV !== 'production';
     // const data = await asyncFunction()
@@ -23,7 +23,7 @@ export default defineConfig(async ({ command, mode }) => {
             open: true, //vite项目启动时自动打开浏览器
             port: 8080, //vite项目启动时自定义端口
             hmr: true, //开启热更新
-            cors: true,  // 允许跨域
+            cors: true, // 允许跨域
             //反向代理配置，注意rewrite写法，开始没看文档在这里踩了坑
             proxy: {
                 '/api': {
@@ -45,6 +45,8 @@ export default defineConfig(async ({ command, mode }) => {
             extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
         },
         plugins: [
+            // eslint 校验
+            eslint(eslintrc),
             //如何设置开启生产打包分析文件大小功能
             visualizer({
                 open: true, //注意这里要设置为true，否则无效
@@ -52,13 +54,13 @@ export default defineConfig(async ({ command, mode }) => {
                 brotliSize: true,
             }),
             {
-               // 自定义插件
+                // 自定义插件
                 ...file(),
                 enforce: 'pre',
             },
             react(),
             pluginResolve(),
-            commonjs(),
+            // commonjs(),
             legacy({
                 targets: ['defaults', 'not IE 11'],
             }),
@@ -71,7 +73,7 @@ export default defineConfig(async ({ command, mode }) => {
             // 构建后是否生成 source map 文件
             sourcemap: IS_DEV,
             // chunk 大小警告的限制
-            chunkSizeWarningLimit: 700,
+            // chunkSizeWarningLimit: 700,
             // 生产环境移除 console
             terserOptions: {
                 compress: {
