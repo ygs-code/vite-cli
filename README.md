@@ -406,7 +406,7 @@ export default defineConfig(async ({ command, mode }) => {
 
 开源不易，请各位网友多多支持，给我git点赞谢谢了
 
-[git地址](https://github.com/qq281113270/vite-cli)
+#### [git地址](https://github.com/qq281113270/vite-cli)
 
 
 
