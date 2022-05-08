@@ -1,4 +1,4 @@
-# vite 脚手架
+# vite 脚手架配置
 
 ##  webpack和vite的比较
 
@@ -259,7 +259,11 @@ VITE_APP_BASEAPI="https://www.test.com"
 
 
 
+开源不易，请多多支持，给我git点赞谢谢了
 
+[git地址](https://github.com/qq281113270/vite-cli)
+
+ 
 
  
 
