@@ -2,6 +2,8 @@ import { defineConfig, loadEnv } from 'vite';
 // 要想为传统浏览器提供支持，可以按下面这样使用官方插件 @vitejs/plugin-legacy：
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
+import pluginResolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
 import { visualizer } from 'rollup-plugin-visualizer';
 import file from './file';
 import path from 'path';
@@ -55,6 +57,8 @@ export default defineConfig(async ({ command, mode }) => {
                 enforce: 'pre',
             },
             react(),
+            pluginResolve(),
+            commonjs(),
             legacy({
                 targets: ['defaults', 'not IE 11'],
             }),
@@ -96,6 +100,7 @@ export default defineConfig(async ({ command, mode }) => {
                     chunkFileNames: 'static/js/[name]-[hash].js',
                     entryFileNames: 'static/js/[name]-[hash].js',
                     assetFileNames: 'static/[ext]/name-[hash].[ext]',
+                    // format: 'amd' // 动态导入不支持iife
                 },
 
                 // https://rollupjs.org/guide/en/#big-list-of-options

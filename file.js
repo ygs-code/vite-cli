@@ -1,4 +1,4 @@
-const fileRegex = /\.(graphql)$/;
+
 
 export default function myPlugin() {
     return {
@@ -7,6 +7,7 @@ export default function myPlugin() {
             src, // 文件内容
             id // 文件路径
         ) {
+            const fileRegex = /\.(graphql)$/;
             // console.log('src=',src)
             console.log('id=', id);
             if (fileRegex.test(id)) {
