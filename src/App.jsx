@@ -1,29 +1,22 @@
 import { useState } from 'react';
-import  'react-error-overlay';
 import logo from './logo.svg';
 import './App.css';
 // import demo from './demo.graphql';
 
-let c = 123; 
-// asdf
-
+if (import.meta) {
+    console.log(
+        'import.meta.env.VITE_APP_BASEAPI=',
+        import.meta.env.VITE_APP_BASEAPI
+    );
+    console.log(
+        '  import.meta.env.VITE_SOME_KEY==',
+        import.meta.env.VITE_SOME_KEY
+    );
+}
 
 function App() {
     const [count, setCount] = useState(0);
-
-    console.log('count123==', count);
-    // console.log('demo==', demo()); 
-    /*eslint-disable*/
-    console.log('env', import.meta.env.VITE_APP_BASEAPI);
-    console.log('env', import.meta.env.VITE_SOME_KEY);
-    /*eslint-disable*/
-
-    // 注入全局变量打包出错
-    // console.log(
-    //     '  import.meta.env.VITE_SOME_KEY==',
-    //     import.meta.env.VITE_SOME_KEY
-    // );
-
+ 
     return (
         <div className="App">
             <header className="App-header">

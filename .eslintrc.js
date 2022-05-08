@@ -36,9 +36,8 @@ module.exports = {
         // 'no-multiple-empty-lines': 'off', // 不允许有连续多行空行(关闭规则)
         // 'no-undef': 1, //不能有未定义的变量
         eqeqeq: ['error', 'always'],
-        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-        'no-undef': 'error',
-        // "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        // 'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+        // 'no-undef': 'warn',
         // 'no-void': 2, //禁用void操作符
     },
 };
