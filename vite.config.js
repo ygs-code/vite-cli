@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react';
 import pluginResolve from 'rollup-plugin-node-resolve';
 import { visualizer } from 'rollup-plugin-visualizer';
 import eslint from '@rollup/plugin-eslint';
+// node服务器打包
+import commonjs from 'rollup-plugin-commonjs'
 import file from './file';
 import path from 'path';
 import eslintrc from './.eslintrc.js';
@@ -60,6 +62,7 @@ export default defineConfig(async ({ command, mode }) => {
             },
             react(),
             pluginResolve(),
+            // commonjs(),
             legacy({
                 targets: ['defaults', 'not IE 11'],
             }),
