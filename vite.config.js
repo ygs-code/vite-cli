@@ -60,7 +60,6 @@ export default defineConfig(async ({ command, mode }) => {
             },
             react(),
             pluginResolve(),
-            // commonjs(),
             legacy({
                 targets: ['defaults', 'not IE 11'],
             }),
