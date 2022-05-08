@@ -1,0 +1,5 @@
+let fn=()=>{
+    return 123
+}
+
+export default fn
