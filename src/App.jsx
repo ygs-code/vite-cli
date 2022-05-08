@@ -71,7 +71,7 @@ export default App;
 if (import.meta.hot) {
     import.meta.hot.accept((newModule) => {
         console.log('代码更新成功');
-        // 这种跟新会刷新浏览器
+        // 这种更新新会刷新浏览器
         window.location.reload();
     });
 }
