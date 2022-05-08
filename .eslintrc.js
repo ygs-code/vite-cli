@@ -11,7 +11,7 @@ module.exports = {
         browser: true,
         es2021: true,
     },
-    plugins: ['react', 'jsx-a11y', 'import',],
+    plugins: ['react', 'jsx-a11y', 'import'],
     extends: [
         // 扩展配置
         // 'plugin:vue/essential', // vue里必须的规则
@@ -37,6 +37,7 @@ module.exports = {
         // 'no-undef': 1, //不能有未定义的变量
         eqeqeq: ['error', 'always'],
         'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+        'no-undef': 'error',
         // "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         // 'no-void': 2, //禁用void操作符
     },
