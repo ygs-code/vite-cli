@@ -5,18 +5,22 @@ import './App.css';
 
 if (import.meta) {
     console.log(
+        'import.meta',
+        import.meta
+    );
+    console.log(
         'import.meta.env.VITE_APP_BASEAPI=',
         import.meta.env.VITE_APP_BASEAPI
     );
-    console.log(
-        '  import.meta.env.VITE_SOME_KEY==',
-        import.meta.env.VITE_SOME_KEY
-    );
+    // console.log(
+    //     '  import.meta.env.VITE_SOME_KEY==',
+    //     import.meta.env.VITE_APP_BASEAPI
+    // );
 }
 
 function App() {
     const [count, setCount] = useState(0);
- 
+
     return (
         <div className="App">
             <header className="App-header">
