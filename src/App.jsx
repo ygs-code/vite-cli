@@ -4,22 +4,25 @@ import logo from './logo.svg';
 import './App.css';
 // import demo from './demo.graphql';
 
-if (import.meta) {
-    console.log(
-        'import.meta',
-        import.meta
-    );
-    console.log(
-        'import.meta.env.VITE_APP_BASEAPI=',
-        import.meta.env.VITE_APP_BASEAPI
-    );
-    // console.log(
-    //     '  import.meta.env.VITE_SOME_KEY==',
-    //     import.meta.env.VITE_APP_BASEAPI
-    // );
-}
-// asdsdf 
-function App() {
+// if (import.meta) {
+//     console.log(
+//         'import.meta',
+//         import.meta
+//     );
+//     console.log(
+//         'import.meta.env.VITE_APP_BASEAPI=',
+//         import.meta.env.VITE_APP_BASEAPI
+//     );
+//     // console.log(
+//     //     '  import.meta.env.VITE_SOME_KEY==',
+//     //     import.meta.env.VITE_APP_BASEAPI
+//     // );
+// }
+// asdsdf
+
+// 这样导出刷新会有问题
+// export default () => {
+const App = () => {
     const [count, setCount] = useState(0);
 
     return (
@@ -58,15 +61,17 @@ function App() {
                     </a>
                 </p>
             </header>
-            <Home/>
+            <Home />
         </div>
     );
-}
-
-// if (import.meta.hot) {
-//     import.meta.hot.accept((newModule) => {
-//         console.log('代码更新成功');
-//     });
-// }
+};
 
 export default App;
+
+if (import.meta.hot) {
+    import.meta.hot.accept((newModule) => {
+        console.log('代码更新成功');
+        // 这种跟新会刷新浏览器
+        window.location.reload();
+    });
+}
