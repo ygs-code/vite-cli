@@ -3,6 +3,8 @@ import { defineConfig, loadEnv } from 'vite';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import pluginResolve from 'rollup-plugin-node-resolve';
+import notify from 'rollup-plugin-notify';
+import onError from 'rollup-plugin-onerror'
 import { visualizer } from 'rollup-plugin-visualizer';
 import eslint from '@rollup/plugin-eslint';
 import file from './file';
@@ -19,6 +21,7 @@ export default defineConfig(async ({ command, mode }) => {
     return {
         // 打包静态资源路径
         base: './',
+        mode: 'development', // 就是这里
         server: {
             open: true, //vite项目启动时自动打开浏览器
             port: 8080, //vite项目启动时自定义端口
@@ -45,6 +48,12 @@ export default defineConfig(async ({ command, mode }) => {
             extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
         },
         plugins: [
+            //编译报错 不起效
+            notify(),
+            onError((err) => {
+                console.log('There was an Error with your rollup build');
+                console.error(err);
+              }),
             // eslint 校验
             eslint(eslintrc),
             //如何设置开启生产打包分析文件大小功能

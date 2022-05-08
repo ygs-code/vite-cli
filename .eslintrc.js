@@ -37,7 +37,7 @@ module.exports = {
         // 'no-undef': 1, //不能有未定义的变量
         eqeqeq: ['error', 'always'],
         // 'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-        // 'no-undef': 'warn',
+        'no-undef': 'error',
         // 'no-void': 2, //禁用void操作符
     },
 };

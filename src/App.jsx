@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Home from './pages/Home';
 import logo from './logo.svg';
 import './App.css';
 // import demo from './demo.graphql';
@@ -17,7 +18,7 @@ if (import.meta) {
     //     import.meta.env.VITE_APP_BASEAPI
     // );
 }
-
+// asdsdf 
 function App() {
     const [count, setCount] = useState(0);
 
@@ -57,14 +58,15 @@ function App() {
                     </a>
                 </p>
             </header>
+            <Home/>
         </div>
     );
 }
 
-if (import.meta.hot) {
-    import.meta.hot.accept((newModule) => {
-        console.log('代码更新成功');
-    });
-}
+// if (import.meta.hot) {
+//     import.meta.hot.accept((newModule) => {
+//         console.log('代码更新成功');
+//     });
+// }
 
 export default App;
