@@ -1,8 +1,2 @@
-**/.vite/**
 **/dist/**
 **/node_modules/**
-**/@react-refresh/**
-/@react-refresh
-**/@react-refresh
-**/*.css
-**/*.html
