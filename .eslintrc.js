@@ -24,7 +24,7 @@ module.exports = {
   parser: '@babel/eslint-parser',
   // requireConfigFile:false,
   parserOptions: {
-    // parser: "@babel/eslint-parser",
+    parser: "@babel/eslint-parser",
     ecmaVersion: 6,
     sourceType: 'module',
     ecmaFeatures: {
@@ -61,11 +61,11 @@ module.exports = {
     // 'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'no-undef': 'error',
     // 'no-void': 2, //禁用void操作符
-    '@babel/new-cap': 'error',
-    '@babel/no-invalid-this': 'error',
-    '@babel/no-unused-expressions': 'error',
-    '@babel/object-curly-spacing': 'error',
-    '@babel/semi': 'error',
+    // '@babel/new-cap': 'error',
+    // '@babel/no-invalid-this': 'error',
+    // '@babel/no-unused-expressions': 'error',
+    // '@babel/object-curly-spacing': 'error',
+    // '@babel/semi': 'error',
  
   },
 }

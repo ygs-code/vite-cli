@@ -4,13 +4,25 @@
  * @LastEditors: Yao guan shou
  * @LastEditTime: 2022-06-07 17:28:20
  * @FilePath: /webpack-cli/stylelint.config.js
- * @Description: 
+ * @Description:
  */
 //配置 https://stylelint.io/user-guide/configure/
 module.exports = {
   plugins: ['stylelint-scss', 'stylelint-less'],
-  extends: ['stylelint-config-standard', 'stylelint-config-standard-scss'],
+  extends: [
+    'stylelint-config-standard',
+    // 'stylelint-config-recess-order',
+    'stylelint-config-standard-scss'
+  ],
+  ignoreValues: ["string"],
+  // stylelint 需要检查的文件
+  'stylelint.validate': ['css', 'less', 'postcss', 'scss', 'sass'],
   rules: {
+    "value-no-vendor-prefix": null,
+    // 指定颜色函数使用传统符号隔开
+    'color-function-notation': 'legacy',
+    //  "property-no-vendor-prefix":'Autofixable',
+    'alpha-value-notation': 'number',
     'selector-pseudo-class-no-unknown': null,
     'shorthand-property-no-redundant-values': null,
     'at-rule-empty-line-before': null,
@@ -38,6 +50,7 @@ module.exports = {
     'block-opening-brace-space-before': null,
     'no-descending-specificity': null,
     'value-list-max-empty-lines': null,
-    'no-eol-whitespace': null,
-  },
-}
+    'no-eol-whitespace': null
+  }
+};
+
