@@ -19,7 +19,7 @@ const { resolve } = path;
 // https://vitejs.dev/config/
 export default defineConfig(async ({ command, mode }) => {
   // console.log('command=', command);
-  // console.log('mode=', mode);
+//    console.log('mode=', mode);
   const ENV = loadEnv(mode, __dirname);
   const IS_DEV = ENV.VITE_APP_ENV !== 'production';
 
@@ -27,12 +27,12 @@ export default defineConfig(async ({ command, mode }) => {
 //     'VITE_PROJECT_TITLE=',
 //     loadEnv(mode, process.cwd()).VITE_PROJECT_TITLE
 //   );
-
+   
   // const data = await asyncFunction()
   return {
     // 打包静态资源路径
     base: './',
-    mode: 'development', // 就是这里
+    mode:mode , // 'development', // 就是这里
     server: {
       open: true, //vite项目启动时自动打开浏览器
       port: 8080, //vite项目启动时自定义端口
@@ -101,7 +101,7 @@ export default defineConfig(async ({ command, mode }) => {
          */
         entry: '/src/main.jsx',
 
-        template: '/src/public/index.html',
+        template: '/index.html',
         /**
          * 需要注入 index.html ejs 模版的数据
          */
@@ -125,11 +125,11 @@ export default defineConfig(async ({ command, mode }) => {
 
       //编译报错
       notify(),
-      viteCompression({
-        // ext: '.gz', //gz br
-        // algorithm: 'gzip', //brotliCompress gzip
-        // deleteOriginFile: true
-      }),
+    //   viteCompression({
+    //     // ext: '.gz', //gz br
+    //     // algorithm: 'gzip', //brotliCompress gzip
+    //     // deleteOriginFile: true
+    //   }),
       onError((err) => {
         console.log('There was an Error with your rollup build');
         console.error(err);
