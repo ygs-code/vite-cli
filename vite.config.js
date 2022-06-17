@@ -23,10 +23,10 @@ export default defineConfig(async ({ command, mode }) => {
   const ENV = loadEnv(mode, __dirname);
   const IS_DEV = ENV.VITE_APP_ENV !== 'production';
 
-  console.log(
-    'VITE_PROJECT_TITLE=',
-    loadEnv(mode, process.cwd()).VITE_PROJECT_TITLE
-  );
+//   console.log(
+//     'VITE_PROJECT_TITLE=',
+//     loadEnv(mode, process.cwd()).VITE_PROJECT_TITLE
+//   );
 
   // const data = await asyncFunction()
   return {
@@ -58,25 +58,25 @@ export default defineConfig(async ({ command, mode }) => {
       // 省略后缀名引入
       extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
     },
-    // css: {
-    //   postcss: {
-    //     plugins: [
-    //       // 前缀追加
-    //       require('autoprefixer')({
-    //         overrideBrowserslist: [
-    //           'Android 4.1',
-    //           'iOS 7.1',
-    //           'Chrome > 31',
-    //           'ff > 31',
-    //           'ie >= 8',
-    //           '> 1%'
-    //         ],
-    //         grid: true
-    //       }),
-    //       require('postcss-flexbugs-fixes')
-    //     ]
-    //   }
-    // },
+    css: {
+      postcss: {
+        plugins: [
+          // 前缀追加
+          require('autoprefixer')({
+            overrideBrowserslist: [
+              'Android 4.1',
+              'iOS 7.1',
+              'Chrome > 31',
+              'ff > 31',
+              'ie >= 8',
+              '> 1%'
+            ],
+            grid: true
+          }),
+          require('postcss-flexbugs-fixes')
+        ]
+      }
+    },
 
     plugins: [
       
@@ -101,7 +101,7 @@ export default defineConfig(async ({ command, mode }) => {
          */
         entry: '/src/main.jsx',
 
-        template: 'public/index.html',
+        template: '/src/public/index.html',
         /**
          * 需要注入 index.html ejs 模版的数据
          */
@@ -151,14 +151,14 @@ export default defineConfig(async ({ command, mode }) => {
       //   quiet: false, //如果设置为true，将只处理和报告错误，而忽略警告。
       //   fix: true, //自动修复
       // }),
-      stylelint({
-        emitError: true, //发现的错误将始终被触发，将禁用设置为false。
-        emitWarning: true, //如果将disable设置为false，则发现的警告将始终被发出。
-        failOnError: true, //如果有任何错误，将导致模块构建失败，禁用设置为false。
-        failOnWarning: false, //如果有任何警告，如果设置为true，将导致模块构建失败。
-        quiet: false //如果设置为true，将只处理和报告错误，而忽略警告。
-        // fix: true, //自动修复
-      }),
+    //   stylelint({
+    //     emitError: true, //发现的错误将始终被触发，将禁用设置为false。
+    //     emitWarning: true, //如果将disable设置为false，则发现的警告将始终被发出。
+    //     failOnError: true, //如果有任何错误，将导致模块构建失败，禁用设置为false。
+    //     failOnWarning: false, //如果有任何警告，如果设置为true，将导致模块构建失败。
+    //     quiet: false //如果设置为true，将只处理和报告错误，而忽略警告。
+    //     // fix: true, //自动修复
+    //   }),
       //如何设置开启生产打包分析文件大小功能
       visualizer({
         open: true, //注意这里要设置为true，否则无效
