@@ -9,8 +9,11 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import eslint from '@rollup/plugin-eslint';
 import eslintPlugin from 'vite-plugin-eslint';
 import stylelint from 'rollup-plugin-stylelint';
+import viteCompression from 'vite-plugin-compression';
 import file from './file';
 import path from 'path';
+import { createHtmlPlugin } from 'vite-plugin-html';
+import ViteRestart from 'vite-plugin-restart'
 import eslintrc from './.eslintrc.js';
 const { resolve } = path;
 // https://vitejs.dev/config/
@@ -19,6 +22,12 @@ export default defineConfig(async ({ command, mode }) => {
   // console.log('mode=', mode);
   const ENV = loadEnv(mode, __dirname);
   const IS_DEV = ENV.VITE_APP_ENV !== 'production';
+
+  console.log(
+    'VITE_PROJECT_TITLE=',
+    loadEnv(mode, process.cwd()).VITE_PROJECT_TITLE
+  );
+
   // const data = await asyncFunction()
   return {
     // 打包静态资源路径
@@ -70,8 +79,57 @@ export default defineConfig(async ({ command, mode }) => {
     // },
 
     plugins: [
-      //编译报错 不起效
+      
+      // ViteRestart({
+      //   restart: [
+      //     'my.config.[jt]s',
+      //   ]
+      // }),
+      createHtmlPlugin({
+        collapseWhitespace: true,
+        keepClosingSlash: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        minifyCSS: true,
+        minify: true,
+        /**
+         * 在这里写entry后，你将不需要在`index.html`内添加 script 标签，原有标签需要删除
+         * @default src/main.jsx
+         */
+        entry: '/src/main.jsx',
+
+        template: 'public/index.html',
+        /**
+         * 需要注入 index.html ejs 模版的数据
+         */
+        inject: {
+          data: {
+            // 查找.env.test文件里面的VITE_PROJECT_TITLE，请以VITE_标识开头
+            title: loadEnv(mode, process.cwd()).VITE_PROJECT_TITLE, 
+            // injectScript: `<script src="/inject.js"></script>`
+          },
+          tags: [
+            {
+              injectTo: 'body-prepend',
+              tag: 'div',
+              attrs: {
+                id: 'tag'
+              }
+            }
+          ]
+        }
+      }),
+
+      //编译报错
       notify(),
+      viteCompression({
+        // ext: '.gz', //gz br
+        // algorithm: 'gzip', //brotliCompress gzip
+        // deleteOriginFile: true
+      }),
       onError((err) => {
         console.log('There was an Error with your rollup build');
         console.error(err);
@@ -152,6 +210,16 @@ export default defineConfig(async ({ command, mode }) => {
         },
         // 出口
         output: {
+          // 拆包，但是没有 webpack 拆的那么零碎和好用。
+          manualChunks: (id) => {
+            if (id.includes('node_modules')) {
+              return id
+                .toString()
+                .split('node_modules/')[1]
+                .split('/')[0]
+                .toString();
+            }
+          },
           chunkFileNames: 'static/js/[name]-[hash].js',
           entryFileNames: 'static/js/[name]-[hash].js',
           assetFileNames: 'static/[ext]/name-[hash].[ext]'
