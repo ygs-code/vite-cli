@@ -1,4 +1,4 @@
-export default function myPlugin() {
+module.exports = function myPlugin() {
     const virtualModuleId = '@my-virtual-module'
     const resolvedVirtualModuleId = '\0' + virtualModuleId
   

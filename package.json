@@ -1,7 +1,8 @@
 {
-  "name": "vite-project",
-  "private": true,
-  "version": "0.0.0",
+  "name": "vite-config",
+  "private": false,
+  "version": "0.0.1",
+  "main": "./vite.config.js",
   "scripts": {
     "dev": " node --max-old-space-size=8192 node_modules/vite/bin/vite.js   --mode development",
     "test": " node --max-old-space-size=8192 node_modules/vite/bin/vite.js  build --mode test ",
@@ -10,6 +11,7 @@
   },
   "browserslist": ">0.75%, not ie 11, not UCAndroid >0, not OperaMini all",
   "dependencies": {
+    "@babel/register": "^7.17.7",
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.10",
     "@babel/eslint-parser": "^7.17.0",
